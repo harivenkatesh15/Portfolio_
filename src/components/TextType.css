@@ -1,0 +1,26 @@
+/* src/components/TextType.css */
+.text-type-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.text-type-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 0.8em;
+  background: linear-gradient(to bottom, #A855F7, #EC4899); /* Purple to Pink Gradient */
+  margin-left: 4px;
+  border-radius: 2px;
+  animation: smoothBlink 1s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+}
+
+.text-type-cursor.typing {
+  animation: none; /* Stop blinking while typing for realism */
+  opacity: 1;
+}
+
+@keyframes smoothBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
