@@ -421,6 +421,7 @@ const MobilePanel = ({ cert }) => (
   </motion.div>
 );
 
+
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 const Certifications = () => {
   const [activeCert, setActiveCert] = useState(certifications[0]);

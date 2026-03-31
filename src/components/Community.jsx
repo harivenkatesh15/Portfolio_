@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import {
   Users, Mic, Award, Globe, HeartHandshake,
-  Code2, Github, Megaphone, ArrowUpRight, Sparkles, Zap
+  Code2, Github, Megaphone, ArrowUpRight, Sparkles, Zap, Trophy
 } from 'lucide-react';
 
 // --- YOUR IMAGES ---
@@ -11,6 +11,7 @@ import srm from '../assets/images/srm.jpg';
 import paper from '../assets/images/paper.jpg';
 import tech from '../assets/images/tech.jpg';
 import hackathon from '../assets/images/hackathon.jpg';
+import award from '../assets/images/award.png';
 
 // --- STATS ---
 const stats = [
@@ -37,19 +38,19 @@ const moments = [
     bg: "bg-blue-950/40",
   },
   {
-    id: 2,
-    title: "Research Speaker",
-    role: "Paper Presentation",
-    desc: "Delivered a deep-dive session on NLP Transformers at KPRIET.",
-    category: "Speaking",
-    filter: "speaking",
-    size: "md:col-span-1 md:row-span-2",
-    img: paper,
-    icon: Mic,
-    color: "text-violet-300",
-    accentColor: "#8b5cf6",
-    bg: "bg-violet-950/40",
-  },
+  id: 2,
+  title: "Open Innovation",
+  role: "Paper Presentation",
+  desc: "Presented a technical paper at PSG iTech's Open Innovation event.",
+  category: "Speaking",
+  filter: "speaking",
+  size: "md:col-span-1 md:row-span-2",
+  img: paper,
+  icon: Mic,
+  color: "text-violet-300",
+  accentColor: "#8b5cf6",
+  bg: "bg-violet-950/40",
+},
   {
     id: 3,
     title: "SRM Healthathon",
@@ -80,7 +81,7 @@ const moments = [
   },
   {
     id: 6,
-    title: "Tech Meetup 2024",
+    title: "Tech Meetup",
     role: "Attendee",
     desc: "Networking with Cloud Computing leaders and industry pioneers.",
     category: "Network",
@@ -93,19 +94,19 @@ const moments = [
     bg: "bg-rose-950/40",
   },
   {
-    id: 7,
-    title: "Campus Lead",
-    role: "Organizer",
-    desc: "Coordinating workshops and technical events for 100+ students.",
-    category: "Leadership",
-    filter: "speaking",
-    size: "md:col-span-1 md:row-span-1",
-    img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80",
-    icon: Megaphone,
-    color: "text-emerald-300",
-    accentColor: "#10b981",
-    bg: "bg-emerald-950/40",
-  },
+  id: 7, 
+  title: "Best Student Award",
+  role: "Academic Excellence",
+  desc: "Recognized for overall contributions and impact as a student.",
+  category: "Achievement",
+  filter: "achievement",
+  size: "md:col-span-1 md:row-span-1",
+  img: award, 
+  icon: Trophy,
+  color: "text-yellow-300",
+  accentColor: "#f59e0b",
+  bg: "bg-yellow-950/40",
+},
 ];
 
 const filters = [
@@ -422,8 +423,8 @@ const Community = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* STATS */}
-          <StatStrip />
+          {/* STATS
+          <StatStrip /> */}
 
         </div>
       </section>

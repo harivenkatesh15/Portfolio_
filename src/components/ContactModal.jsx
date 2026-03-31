@@ -98,7 +98,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                         type="text" 
                         name="user_name" 
                         required
-                        placeholder="John Doe"
+                        placeholder="hari venkatesh"
                         className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none text-white transition-all placeholder:text-gray-600"
                       />
                     </div>
@@ -110,7 +110,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                         type="email" 
                         name="user_email" 
                         required
-                        placeholder="john@example.com"
+                        placeholder="hari@example.com"
                         className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none text-white transition-all placeholder:text-gray-600"
                       />
                     </div>

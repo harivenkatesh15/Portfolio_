@@ -164,7 +164,7 @@ const SendButton = () => {
 
   return (
     <motion.a
-      href={state === 'idle' ? 'mailto:harivenkatesh.work@gmail.com' : undefined}
+      href={state === 'idle' ? 'mailto:harivenkatesh1505@gmail.com' : undefined}
       onClick={handleClick}
       className="relative inline-flex items-center gap-3 cursor-pointer overflow-hidden"
       style={{

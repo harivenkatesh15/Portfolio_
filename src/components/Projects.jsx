@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Terminal, FolderOpen, Folder, ChevronRight, Code2, Cpu, Zap } from 'lucide-react';
+import { Github, ExternalLink, Terminal, FolderOpen, Folder, ChevronRight, Code2, Zap } from 'lucide-react';
 
 // ─── FONT LOADER ──────────────────────────────────────────────────────────────
 const useGoogleFonts = () => {
@@ -16,34 +16,6 @@ const useGoogleFonts = () => {
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const projects = [
   {
-    id: 'signspeakv2',
-    filename: 'signspeak.py',
-    type: 'python',
-    title: 'SignSpeak',
-    category: 'AI · Assistive Tech',
-    status: 'AWARDED',
-    statusColor: '#F5C518',
-    accent: '#06b6d4',
-    accentDim: 'rgba(6,182,212,0.08)',
-    lines: [
-      { n: 1,  t: 'comment', c: '# SignSpeak — Real-time Sign Language to Speech' },
-      { n: 2,  t: 'comment', c: '# Winner · SRM Healthathon 2.0 · 2024' },
-      { n: 3,  t: 'blank' },
-      { n: 4,  t: 'keyword', c: 'import', rest: ' tensorflow as tf, cv2, mediapipe as mp' },
-      { n: 5,  t: 'keyword', c: 'from',   rest: ' model import SignClassifier' },
-      { n: 6,  t: 'blank' },
-      { n: 7,  t: 'def',     c: 'def ',   fn: 'predict_gesture', args: 'frame: np.ndarray' },
-      { n: 8,  t: 'indent',  c: '  landmarks = mp.solutions.hands.process(frame)' },
-      { n: 9,  t: 'indent',  c: '  return classifier.infer(landmarks)  # → ASL label' },
-      { n: 10, t: 'blank' },
-      { n: 11, t: 'string',  c: '# Accuracy: 94.2%  |  Latency: ~18 ms/frame' },
-    ],
-    tech: ['Python', 'TensorFlow', 'OpenCV', 'MediaPipe'],
-    description: 'Bridges gesture-to-voice for the hearing impaired. Built & won first prize at SRM Healthathon — real-time ASL classification via hand landmark detection.',
-    github: '#',
-    live: '#',
-  },
-  {
     id: 'medvault',
     filename: 'MedVaultApp.java',
     type: 'java',
@@ -55,19 +27,93 @@ const projects = [
     accentDim: 'rgba(16,185,129,0.08)',
     lines: [
       { n: 1,  t: 'comment', c: '// MedVault — Hospital Management System' },
-      { n: 2,  t: 'comment', c: '// Infosys Springboard Internship · 2024' },
+      { n: 2,  t: 'comment', c: '// Spring Boot · React · MySQL · Role-Based Access' },
       { n: 3,  t: 'blank' },
       { n: 4,  t: 'keyword', c: '@RestController' },
       { n: 5,  t: 'keyword', c: '@RequestMapping', rest: '("/api/patients")' },
       { n: 6,  t: 'def',     c: 'public class ', fn: 'PatientController', args: '' },
       { n: 7,  t: 'blank' },
-      { n: 8,  t: 'indent',  c: '  @PostMapping · createPatient(PatientDTO dto)' },
-      { n: 9,  t: 'indent',  c: '  @GetMapping  · getRecords(Long patientId)' },
-      { n: 10, t: 'blank' },
-      { n: 11, t: 'string',  c: '// Deployed 2 weeks ahead of schedule' },
+      { n: 8,  t: 'indent',  c: '  @PreAuthorize("hasRole(\'DOCTOR\')")' },
+      { n: 9,  t: 'indent',  c: '  @PostMapping · requestDataAccess(Long patientId)' },
+      { n: 10, t: 'indent',  c: '  @GetMapping  · getDashboardMetrics(Role role)' },
+      { n: 11, t: 'blank' },
+      { n: 12, t: 'string',  c: '// RBAC for 50+ users · 30% faster retrieval' },
     ],
-    tech: ['React', 'Spring Boot', 'MySQL', 'Docker'],
-    description: 'Comprehensive HMS covering patient records, appointments, billing, and staff management. Built under Infosys Springboard — shipped ahead of schedule.',
+    tech: ['Spring Boot', 'React', 'MySQL', 'Material UI', 'RBAC'],
+    highlights: [
+      'RBAC securing access for 50+ users across roles',
+      'Request-Approve workflow for restricted data sharing',
+      '30% faster patient data retrieval via optimized dashboard',
+    ],
+    description: 'A secure hospital management platform built during Infosys Springboard. Features role-based access control, a Request-Approve workflow for restricted record sharing, and a responsive Material UI dashboard — all shipped 100% compliant.',
+    github: '#',
+    live: '#',
+  },
+  {
+    id: 'fitscale',
+    filename: 'FitScaleGateway.java',
+    type: 'java',
+    title: 'FitScale',
+    category: 'Microservices · AI Fitness',
+    status: 'BUILT',
+    statusColor: '#60a5fa',
+    accent: '#3b82f6',
+    accentDim: 'rgba(59,130,246,0.08)',
+    lines: [
+      { n: 1,  t: 'comment', c: '// FitScale — AI Fitness Microservices Platform' },
+      { n: 2,  t: 'comment', c: '// Spring Cloud · Keycloak · RabbitMQ · Gemini API' },
+      { n: 3,  t: 'blank' },
+      { n: 4,  t: 'keyword', c: '@EnableEurekaClient' },
+      { n: 5,  t: 'keyword', c: '@SpringBootApplication' },
+      { n: 6,  t: 'def',     c: 'public class ', fn: 'ActivityRecommender', args: '' },
+      { n: 7,  t: 'blank' },
+      { n: 8,  t: 'indent',  c: '  // OAuth 2.0 via Keycloak' },
+      { n: 9,  t: 'indent',  c: '  GeminiClient.recommend(userData) → AIResponse' },
+      { n: 10, t: 'indent',  c: '  RabbitMQ.publish("activity.events", payload)' },
+      { n: 11, t: 'blank' },
+      { n: 12, t: 'string',  c: '// Eureka discovery · API Gateway routing' },
+    ],
+    tech: ['Spring Cloud', 'RabbitMQ', 'Keycloak', 'OAuth 2.0', 'Gemini API', 'Eureka'],
+    highlights: [
+      'Microservices discovery via Eureka + API Gateway routing',
+      'Keycloak OAuth 2.0 for secure authentication',
+      'Gemini API for personalized AI activity recommendations',
+    ],
+    description: 'A scalable fitness platform built on microservices architecture. Uses Keycloak for OAuth 2.0 auth, RabbitMQ for async event processing, and Google Gemini API to generate personalized AI-driven activity recommendations based on user health data.',
+    github: '#',
+    live: '#',
+  },
+  {
+    id: 'resume-analyzer',
+    filename: 'analyzer.py',
+    type: 'python',
+    title: 'AI Resume Analyzer',
+    category: 'NLP · ATS · Flask',
+    status: 'ACTIVE',
+    statusColor: '#f59e0b',
+    accent: '#f59e0b',
+    accentDim: 'rgba(245,158,11,0.08)',
+    lines: [
+      { n: 1,  t: 'comment', c: '# AI Resume Analyzer — ATS Scoring Engine' },
+      { n: 2,  t: 'comment', c: '# Python · Flask · NLP · MongoDB' },
+      { n: 3,  t: 'blank' },
+      { n: 4,  t: 'keyword', c: 'from', rest: ' sklearn.feature_extraction import TfidfVectorizer' },
+      { n: 5,  t: 'keyword', c: 'from', rest: ' spacy import load as nlp_load' },
+      { n: 6,  t: 'blank' },
+      { n: 7,  t: 'def',     c: 'def ', fn: 'analyze_resume', args: 'pdf_path: str' },
+      { n: 8,  t: 'indent',  c: '  keywords = extract_ats_keywords(pdf_path)' },
+      { n: 9,  t: 'indent',  c: '  score    = compute_ats_score(keywords)' },
+      { n: 10, t: 'indent',  c: '  return { "score": score, "gaps": missing }' },
+      { n: 11, t: 'blank' },
+      { n: 12, t: 'string',  c: '# NLP keyword extraction → ATS feedback' },
+    ],
+    tech: ['Python', 'Flask', 'spaCy', 'TF-IDF', 'MongoDB'],
+    highlights: [
+      'NLP-powered keyword extraction against ATS criteria',
+      'Actionable gap analysis and score breakdown per section',
+      'Flask REST API with MongoDB for result persistence',
+    ],
+    description: 'A web app that parses uploaded resumes and scores them against ATS (Applicant Tracking System) criteria. Uses NLP for keyword extraction and semantic gap analysis — giving candidates targeted, actionable feedback to improve their resume.',
     github: '#',
     live: '#',
   },
@@ -75,53 +121,31 @@ const projects = [
     id: 'spotify-pipeline',
     filename: 'pipeline.tf',
     type: 'terraform',
-    title: 'Spotify Pipeline',
+    title: 'Spotify AWS Pipeline',
     category: 'Data Engineering · AWS',
     status: 'LIVE',
     statusColor: '#1DB954',
     accent: '#a78bfa',
     accentDim: 'rgba(167,139,250,0.08)',
     lines: [
-      { n: 1,  t: 'comment', c: '# Spotify Data Pipeline — AWS Native' },
-      { n: 2,  t: 'comment', c: '# S3 → Glue → Athena → QuickSight' },
+      { n: 1,  t: 'comment', c: '# Spotify Data Pipeline — End-to-End AWS' },
+      { n: 2,  t: 'comment', c: '# S3 → Glue ETL → Athena SQL → QuickSight BI' },
       { n: 3,  t: 'blank' },
-      { n: 4,  t: 'keyword', c: 'resource', rest: ' "aws_glue_job" "transform" {' },
-      { n: 5,  t: 'indent',  c: '  name     = "spotify-etl-job"' },
-      { n: 6,  t: 'indent',  c: '  role_arn = aws_iam_role.glue.arn' },
-      { n: 7,  t: 'indent',  c: '  command  { script_location = "s3://…" }' },
+      { n: 4,  t: 'keyword', c: 'resource', rest: ' "aws_glue_job" "spotify_etl" {' },
+      { n: 5,  t: 'indent',  c: '  name     = "spotify-transform-job"' },
+      { n: 6,  t: 'indent',  c: '  role_arn = aws_iam_role.glue_exec.arn' },
+      { n: 7,  t: 'indent',  c: '  command  { script = "s3://scripts/etl.py" }' },
       { n: 8,  t: 'keyword', c: '}' },
       { n: 9,  t: 'blank' },
-      { n: 10, t: 'string',  c: '# ~2M records/day · avg query < 3s (Athena)' },
+      { n: 10, t: 'string',  c: '# Raw JSON → Parquet · SQL analytics · BI dashboards' },
     ],
-    tech: ['AWS S3', 'Glue', 'Athena', 'QuickSight', 'Python'],
-    description: 'End-to-end serverless data pipeline ingesting Spotify streaming data at scale — raw JSON → Parquet → interactive BI dashboards.',
-    github: '#',
-    live: '#',
-  },
-  {
-    id: 'marketing-agent',
-    filename: 'agent_workflow.json',
-    type: 'json',
-    title: 'AI Marketing Agent',
-    category: 'Automation · GenAI',
-    status: 'ACTIVE',
-    statusColor: '#d946ef',
-    accent: '#d946ef',
-    accentDim: 'rgba(217,70,239,0.08)',
-    lines: [
-      { n: 1,  t: 'keyword', c: '{' },
-      { n: 2,  t: 'indent',  c: '  "workflow": "artisan-marketing-v2",' },
-      { n: 3,  t: 'indent',  c: '  "trigger":  "new_product_webhook",' },
-      { n: 4,  t: 'indent',  c: '  "steps": [' },
-      { n: 5,  t: 'string',  c: '    "gemini::generate_caption",' },
-      { n: 6,  t: 'string',  c: '    "dalle::create_visual",' },
-      { n: 7,  t: 'string',  c: '    "instagram::schedule_post"' },
-      { n: 8,  t: 'indent',  c: '  ],' },
-      { n: 9,  t: 'indent',  c: '  "latency_p95": "4.2s"' },
-      { n: 10, t: 'keyword', c: '}' },
+    tech: ['AWS S3', 'AWS Glue', 'Amazon Athena', 'QuickSight', 'Python'],
+    highlights: [
+      'Serverless ingestion pipeline storing raw Spotify data in S3',
+      'AWS Glue ETL transforms JSON → query-optimized Parquet',
+      'Athena SQL analytics + QuickSight interactive dashboards',
     ],
-    tech: ['n8n', 'Gemini API', 'Webhooks', 'REST'],
-    description: 'Autonomous n8n workflow: ingests new product images, generates AI copy via Gemini, produces visuals, and schedules cross-platform posts — zero human input.',
+    description: 'End-to-end serverless data pipeline ingesting Spotify streaming data at scale. Raw JSON lands in S3, AWS Glue ETL transforms it into structured Parquet in the Glue Data Catalog, and Amazon Athena + QuickSight power interactive BI dashboards.',
     github: '#',
     live: '#',
   },
@@ -129,19 +153,17 @@ const projects = [
 
 // ─── SYNTAX COLORS ────────────────────────────────────────────────────────────
 const tokenColor = {
-  comment:  '#6b7280',
-  keyword:  '#93c5fd',
-  def:      '#fdba74',
-  fn:       '#fde68a',
-  args:     '#d1fae5',
-  indent:   '#e2e8f0',
-  string:   '#86efac',
-  blank:    '',
+  comment: '#6b7280',
+  keyword: '#93c5fd',
+  def:     '#fdba74',
+  fn:      '#fde68a',
+  args:    '#d1fae5',
+  indent:  '#e2e8f0',
+  string:  '#86efac',
+  blank:   '',
 };
 
 // ─── GLASS HELPER ─────────────────────────────────────────────────────────────
-// opacity: how dark the tint is (0 = fully clear, 1 = opaque black)
-// blur: backdrop blur in px
 const glass = (opacity = 0.45, blur = 20) => ({
   background: `rgba(10,10,14,${opacity})`,
   backdropFilter: `blur(${blur}px) saturate(1.5)`,
@@ -187,10 +209,10 @@ const CodeLine = ({ line, delay }) => {
 // ─── FILE TAB ─────────────────────────────────────────────────────────────────
 const FileTab = ({ project, isOpen, onClick, idx }) => {
   const extColor = {
-    python: '#3B82F6',
-    java: '#F97316',
+    python:    '#F59E0B',
+    java:      '#F97316',
     terraform: '#818CF8',
-    json: '#FBBF24',
+    json:      '#FBBF24',
   };
   return (
     <motion.button
@@ -240,6 +262,21 @@ const FileTab = ({ project, isOpen, onClick, idx }) => {
   );
 };
 
+// ─── HIGHLIGHT DOT ────────────────────────────────────────────────────────────
+const HighlightRow = ({ text, accent, delay }) => (
+  <motion.div
+    className="flex items-start gap-2"
+    initial={{ opacity: 0, x: -6 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay, duration: 0.22 }}
+  >
+    <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: accent }} />
+    <span className="text-[11px] text-white/50 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+      {text}
+    </span>
+  </motion.div>
+);
+
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 const Projects = () => {
   useGoogleFonts();
@@ -251,7 +288,7 @@ const Projects = () => {
 
   useEffect(() => {
     const msgs = [
-      `$ cat ./projects/${active.filename}`,
+      `$ open ./projects/${active.filename}`,
       `> parsing ${active.type} syntax...`,
       `> dependencies resolved ✓`,
       `> status: ${active.status}`,
@@ -305,12 +342,12 @@ const Projects = () => {
               </span>
             </h2>
           </div>
-          <p className="text-sm text-white/30 max-w-xs leading-relaxed mb-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          {/* <p className="text-sm text-white/30 max-w-xs leading-relaxed mb-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>
             Open a file to inspect the source. Click any project to explore its implementation.
-          </p>
+          </p> */}
         </div>
 
-        {/* ── IDE Shell — glassmorphic outer frame ── */}
+        {/* ── IDE Shell ── */}
         <div
           className="relative rounded-2xl overflow-hidden"
           style={{
@@ -326,13 +363,10 @@ const Projects = () => {
           }}
         >
 
-          {/* Title Bar — slightly more opaque for layering depth */}
+          {/* Title Bar */}
           <div
             className="flex items-center gap-3 px-5 py-3 border-b"
-            style={{
-              ...glass(0.55, 16),
-              borderColor: 'rgba(255,255,255,0.06)',
-            }}
+            style={{ ...glass(0.55, 16), borderColor: 'rgba(255,255,255,0.06)' }}
           >
             <div className="flex gap-1.5">
               <div className="w-3 h-3 rounded-full bg-red-500/70" />
@@ -353,10 +387,7 @@ const Projects = () => {
             {/* ── Sidebar ── */}
             <div
               className="hidden md:flex flex-col w-52 shrink-0 border-r py-4 px-2 gap-1"
-              style={{
-                ...glass(0.5, 16),
-                borderColor: 'rgba(255,255,255,0.05)',
-              }}
+              style={{ ...glass(0.5, 16), borderColor: 'rgba(255,255,255,0.05)' }}
             >
               <p
                 className="text-[9px] uppercase tracking-widest text-white/20 px-4 mb-3"
@@ -366,9 +397,7 @@ const Projects = () => {
               </p>
               <div className="flex items-center gap-2 px-4 py-1.5 mb-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
                 <ChevronRight size={12} />
-                <span className="text-[11px]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                  projects/
-                </span>
+                <span className="text-[11px]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>projects/</span>
               </div>
               {projects.map((p, i) => (
                 <FileTab
@@ -387,10 +416,7 @@ const Projects = () => {
               {/* Tab bar */}
               <div
                 className="flex gap-0 overflow-x-auto border-b"
-                style={{
-                  ...glass(0.5, 16),
-                  borderColor: 'rgba(255,255,255,0.05)',
-                }}
+                style={{ ...glass(0.5, 16), borderColor: 'rgba(255,255,255,0.05)' }}
               >
                 {projects.map((p) => (
                   <button
@@ -414,7 +440,7 @@ const Projects = () => {
                 ))}
               </div>
 
-              {/* Code view — the most transparent layer, page bg bleeds through */}
+              {/* Code view */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active.id}
@@ -438,10 +464,7 @@ const Projects = () => {
           {/* ── Bottom panel ── */}
           <div
             className="border-t grid grid-cols-1 md:grid-cols-2"
-            style={{
-              ...glass(0.55, 20),
-              borderColor: 'rgba(255,255,255,0.06)',
-            }}
+            style={{ ...glass(0.55, 20), borderColor: 'rgba(255,255,255,0.06)' }}
           >
             {/* Terminal */}
             <div className="border-r" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
@@ -454,7 +477,7 @@ const Projects = () => {
               </div>
               <div
                 ref={termRef}
-                className="p-4 h-28 overflow-y-auto flex flex-col gap-1"
+                className="p-4 h-36 overflow-y-auto flex flex-col gap-1"
                 style={{ scrollbarWidth: 'none' }}
               >
                 <AnimatePresence>
@@ -473,8 +496,24 @@ const Projects = () => {
                       {line}
                     </motion.p>
                   ))}
+                  {/* Key highlights below terminal lines */}
+                  {termLines.length === 4 && (
+                    <motion.div
+                      className="mt-3 flex flex-col gap-2"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.15 }}
+                    >
+                      <p className="text-[9px] uppercase tracking-widest text-white/20 mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                        // key outcomes
+                      </p>
+                      {active.highlights.map((h, i) => (
+                        <HighlightRow key={i} text={h} accent={active.accent} delay={i * 0.08} />
+                      ))}
+                    </motion.div>
+                  )}
                   <motion.span
-                    className="inline-block w-2 h-3 mt-0.5"
+                    className="inline-block w-2 h-3 mt-1"
                     style={{ background: active.accent }}
                     animate={{ opacity: [1, 0, 1] }}
                     transition={{ duration: 1, repeat: Infinity }}
@@ -494,7 +533,7 @@ const Projects = () => {
                 transition={{ duration: 0.25 }}
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-2 flex-wrap">
                     <h3
                       className="text-xl font-black text-white"
                       style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.04em' }}
@@ -502,21 +541,22 @@ const Projects = () => {
                       {active.title}
                     </h3>
                     <span
-                      className="text-[9px] font-bold px-2 py-0.5 rounded-full border animate-pulse"
+                      className="text-[9px] font-bold px-2 py-0.5 rounded-full border"
                       style={{
                         color: active.statusColor,
                         borderColor: active.statusColor + '55',
                         background: active.statusColor + '12',
                         fontFamily: "'JetBrains Mono', monospace",
+                        animation: 'pulse 2s infinite',
                       }}
                     >
                       ● {active.status}
                     </span>
                   </div>
-                  <p className="text-xs text-white/35 mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                  <p className="text-xs text-white/35 mb-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                     {active.category}
                   </p>
-                  <p className="text-xs text-white/45 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  <p className="text-xs text-white/50 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                     {active.description}
                   </p>
                 </div>
@@ -575,7 +615,7 @@ const Projects = () => {
             </AnimatePresence>
           </div>
 
-          {/* Status bar — solid accent color, no glass (it's a 1-line strip) */}
+          {/* Status bar */}
           <div
             className="flex items-center justify-between px-4 py-1.5 text-[10px]"
             style={{
