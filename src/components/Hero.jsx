@@ -5,6 +5,7 @@ import MagneticWrapper from './MagneticWrapper';
 import ProfileCard from './ProfileCard';
 import myProfilePic from '../assets/Hari_V.jpg'; 
 
+
 // --- SPOTLIGHT GLASS CARD COMPONENT ---
 function SpotlightCard({ children, className = "" }) {
   const mouseX = useMotionValue(0);
@@ -143,7 +144,7 @@ const Hero = () => {
             </MagneticWrapper>
             
             <a 
-              href="/resume.pdf" 
+              href="/Hari-resume.pdf"
               download="Hari_Venkatesh_Resume.pdf"
               className="px-8 py-4 rounded-full font-medium text-white border border-white/20 hover:bg-white/5 hover:border-white/40 transition-all flex items-center gap-2"
             >
